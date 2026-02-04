@@ -35,7 +35,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "start": "node server.js"
+    "start": "node --openssl-legacy-provider server.js"
   },
   "keywords": [],
   "author": "",
