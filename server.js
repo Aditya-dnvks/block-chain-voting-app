@@ -10,7 +10,19 @@ const path = require('path');
 
 require('dotenv').config({ path: __dirname + '/.env' });
 
-mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// mongoose.connection.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// I'll be using Mongo URL instead of local setup
+//Username: sankranthipulla_db_user
+//Pwd:qCnJSfzMrBOvXTlT
+
+const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://sankranthipulla_db_user:qCnJSfzMrBOvXTlT@cluster0.apejdjj.mongodb.net/';
+
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,  // Fixes the deprecation warning
+}).catch(err => {
+  console.error('MongoDB connection error:', err);
+});
 
 exp.use(
 	bodyParser.urlencoded({
